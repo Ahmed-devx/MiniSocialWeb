@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mini Social — Modern</title>
+
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  
+  <link rel="stylesheet" href="feed.css">
+</head>
+<body>
+  <div class="app">
+
+    <header class="app-header">
+      <div class="brand-left">
+        <div class="logo-glow">MS</div>
+        <div class="brand-info">
+          <div class="brand-title">Mini Social</div>
+          <div class="brand-sub">Modern • Smooth • Fast</div>
+        </div>
+      </div>
+
+      <div class="brand-right">
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+        <button id="logoutBtn" class="btn-ghost" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="composer glass">
+        <div class="composer-left">
+          <div class="user-avatar">U</div>
+        </div>
+
+        <div class="composer-right">
+          <input id="nameInput" class="input" type="text" placeholder="Your name (e.g. Ahmed)" value="Ahmed">
+          <textarea id="textInput" class="textarea" rows="3" placeholder="Share something..."></textarea>
+
+          <div class="composer-actions">
+            <label class="file-pill" for="imageInput"><i class="fa-regular fa-image"></i> Add image</label>
+            <input type="file" id="imageInput" accept="image/*" />
+
+            <div class="right-actions">
+              <button id="clearBtn" class="btn-secondary">Clear</button>
+              <button id="postBtn" class="btn-primary">Post</button>
+            </div>
+          </div>
+
+          <div id="preview" class="small muted"></div>
+        </div>
+      </section>
+
+      <section class="controls-row">
+        <div class="search-box glass">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input id="searchInput" class="input-search" placeholder="Search posts by name..." />
+        </div>
+
+        <div class="meta muted">Saved locally • Try posting an image</div>
+      </section>
+
+      <section id="feed" class="feed"></section>
+    </main>
+  </div>
+ 
+  <div id="editModal" class="modal-backdrop hidden">
+    <div class="modal">
+      <h3>Edit post</h3>
+      <textarea id="editText" rows="4" class="textarea"></textarea>
+      <div class="modal-actions">
+        <button id="editCancel" class="btn-secondary">Cancel</button>
+        <button id="editSave" class="btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="feed.js"></script>
+</body>
+</html>
