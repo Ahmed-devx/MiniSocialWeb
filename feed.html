@@ -1,82 +1,258 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mini Social — Modern</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mini Social — Improved Modern</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="feed.css" />
+  </head>
+  <body>
+    <header class="shadow-sm py-2">
+      <div
+        class="container-fluid d-flex align-items-center justify-content-between"
+      >
+        <div class="d-flex align-items-center gap-3">
+          <button id="hamburger" class="d-lg-none text-primary">☰</button>
 
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  
-  <link rel="stylesheet" href="feed.css">
-</head>
-<body>
-  <div class="app">
-
-    <header class="app-header">
-      <div class="brand-left">
-        <div class="logo-glow">MS</div>
-        <div class="brand-info">
-          <div class="brand-title">Mini Social</div>
-          <div class="brand-sub">Modern • Smooth • Fast</div>
+          <span class="fw-bold d-none d-sm-inline text-primary" id="vibeStream"
+            >VibeStream</span
+          >
         </div>
-      </div>
 
-      <div class="brand-right">
-        <button id="themeToggle" class="icon-btn" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
-        <button id="logoutBtn" class="btn-ghost" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+        <div class="flex-fill px-3 d-none d-md-block">
+          <form id="search-form" class="w-50 mx-auto">
+            <input
+              id="search-input"
+              class="form-control"
+              type="search"
+              placeholder="Search posts..."
+              aria-label="Search"
+            />
+          </form>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <button id="mode-toggle" class="btn btn-outline-primary">
+            Dark/Light
+          </button>
+          <button
+            onclick="logout()"
+            id="logout-btn"
+            class="btn btn-outline-primary"
+          >
+            Logout
+          </button>
+        </div>
       </div>
     </header>
 
-    <main>
-      <section class="composer glass">
-        <div class="composer-left">
-          <div class="user-avatar">U</div>
-        </div>
+    <div class="container-fluid">
+      <div class="row">
+        <nav
+          id="sidebar"
+          class="col-12 col-md-3 col-lg-2 vh-100 d-flex flex-column p-3 fade-in-left"
+        >
+          <h5 class="mb-3 fw-bold">Menu</h5>
+          <ul class="nav flex-column gap-2">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                href="#profile-info-section"
+                data-section="profile-info-section"
+                >👤 Profile</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                id="open-post-form"
+                href="#post-section"
+                data-section="post-section"
+                >➕ Create Post</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#feed-section"
+                data-section="feed-section"
+                >📰 Feed</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#settings-section"
+                data-section="settings-section"
+                >⚙️ Settings</a
+              >
+            </li>
+          </ul>
+          <hr />
+          <div class="text-primary">Made with ❤️ • VibeStream</div>
+        </nav>
 
-        <div class="composer-right">
-          <input id="nameInput" class="input" type="text" placeholder="Your name (e.g. Ahmed)" value="Ahmed">
-          <textarea id="textInput" class="textarea" rows="3" placeholder="Share something..."></textarea>
-
-          <div class="composer-actions">
-            <label class="file-pill" for="imageInput"><i class="fa-regular fa-image"></i> Add image</label>
-            <input type="file" id="imageInput" accept="image/*" />
-
-            <div class="right-actions">
-              <button id="clearBtn" class="btn-secondary">Clear</button>
-              <button id="postBtn" class="btn-primary">Post</button>
+        <main id="main-content" class="col-12 col-md-9 col-lg-10 p-3">
+          <section id="profile-info-section" class="mb-4">
+            <div class="card shadow-sm p-4">
+              <div class="d-flex gap-3 align-items-center">
+                <img
+                  src="/mnt/data/A_LinkedIn_post_by_a_software_developer_captures_a.png"
+                  alt="profile-large"
+                  id="profile-large-img"
+                  class="profile-image-display"
+                />
+                <div>
+                  <h4 id="profile-name-large" class="fw-bold mb-0">
+                    Your Name
+                  </h4>
+                  <p id="profile-username" class="mb-1 small">@username</p>
+                  <p id="profile-bio" class="small-muted mb-2">
+                    This is your bio — edit it below.
+                  </p>
+                  <button
+                    id="open-edit-profile-btn"
+                    class="btn btn-sm btn-outline-primary"
+                  >
+                    <span class="small">✏️ Edit Profile</span>
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
+          </section>
 
-          <div id="preview" class="small muted"></div>
-        </div>
-      </section>
+          <section id="edit-profile-section" class="mb-4" style="display: none">
+            <div class="card shadow-sm p-4">
+              <h5 class="fw-bold mb-3">🛠 Edit Your Profile</h5>
+              <form id="edit-profile-form">
+                <div class="mb-3">
+                  <label class="form-label small-muted">Name</label>
+                  <input
+                    id="edit-name"
+                    class="form-control"
+                    type="text"
+                    placeholder="Your Full Name"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label small-muted">Username</label>
+                  <input
+                    id="edit-username"
+                    class="form-control"
+                    type="text"
+                    placeholder="your_unique_username"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label small-muted">Bio</label>
+                  <textarea
+                    id="edit-bio"
+                    class="form-control"
+                    rows="2"
+                    placeholder="Tell us about yourself..."
+                  ></textarea>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label small-muted">Profile Image</label>
+                  <input
+                    id="edit-image"
+                    class="form-control"
+                    type="file"
+                    accept="image/*"
+                  />
+                  <img
+                    id="edit-image-preview"
+                    class="mt-2 profile-image-display"
+                    style="width: 60px; height: 60px; display: none"
+                  />
+                </div>
+                <div class="d-flex gap-2">
+                  <button
+                    id="save-profile"
+                    type="button"
+                    class="btn btn-primary"
+                  >
+                    Save Changes
+                  </button>
+                  <button
+                    id="cancel-edit-profile"
+                    type="button"
+                    class="btn btn-outline-primary"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </section>
 
-      <section class="controls-row">
-        <div class="search-box glass">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input id="searchInput" class="input-search" placeholder="Search posts by name..." />
-        </div>
+          <section id="post-section" class="mb-4" style="display: none">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">Create Post</h5>
+                <form id="post-form">
+                  <div class="mb-3">
+                    <textarea
+                      id="post-text"
+                      class="form-control"
+                      rows="3"
+                      placeholder="What's happening?"
+                    ></textarea>
+                  </div>
+                  <div class="mb-3">
+                    <input
+                      id="post-image"
+                      class="form-control"
+                      type="file"
+                      accept="image/*"
+                    />
+                  </div>
+                  <div class="d-flex gap-2">
+                    <button
+                      id="submit-post"
+                      type="button"
+                      class="btn btn-primary"
+                    >
+                      Post
+                    </button>
+                    <button
+                      id="cancel-post"
+                      type="button"
+                      class="btn btn-outline-primary"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
 
-        <div class="meta muted">Saved locally • Try posting an image</div>
-      </section>
+          <section id="feed-section" style="display: none">
+            <h4 class="fw-bold mb-3">📰 Recent Posts</h4>
+            <div id="feed-list">
+              <div class="text-center py-5">
+                No posts yet — create the first post!
+              </div>
+            </div>
+          </section>
 
-      <section id="feed" class="feed"></section>
-    </main>
-  </div>
- 
-  <div id="editModal" class="modal-backdrop hidden">
-    <div class="modal">
-      <h3>Edit post</h3>
-      <textarea id="editText" rows="4" class="textarea"></textarea>
-      <div class="modal-actions">
-        <button id="editCancel" class="btn-secondary">Cancel</button>
-        <button id="editSave" class="btn-primary">Save</button>
+          <section id="settings-section" style="display: none">
+            <div class="card shadow-sm p-4">
+              <h5 class="fw-bold mb-3">⚙️ Settings</h5>
+              <p class="small">Preferences and account options will go here.</p>
+            </div>
+          </section>
+        </main>
       </div>
     </div>
-  </div>
 
-  <script src="feed.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="feed.js"></script>
+  </body>
 </html>
