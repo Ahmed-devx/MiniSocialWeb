@@ -1,0 +1,171 @@
+:root {
+  --color-primary: #0077ff;
+  --color-primary-hover: #0056b3;
+  --bg-dark: linear-gradient(180deg, #0d1117 0%, #010409 100%);
+  --bg-light: linear-gradient(180deg, #f0f2f5 0%, #e0e6ec 100%);
+  --card-dark: #161b22;
+  --card-light: #ffffff;
+  --muted-dark: #8b949e;
+  --muted-light: #586069;
+  --text-dark: #c9d1d9;
+  --text-light: #071035;
+  --accent: var(--color-primary);
+  --radius: 12px;
+  --transition: 220ms ease;
+
+  --input-text: var(--text-dark);
+  --input-placeholder: var(--muted-dark);
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  --bg: var(--bg-dark);
+  --card: var(--card-dark);
+  --muted: var(--muted-dark);
+  --text: var(--text-dark);
+  color: var(--text);
+  --input-text: var(--text-dark);
+  --input-placeholder: var(--muted-dark);
+  background: var(--bg);
+  transition: background var(--transition);
+}
+
+body.light {
+  --bg: var(--bg-light);
+  --card: var(--card-light);
+  --muted: var(--muted-light);
+  --text: var(--text-light);
+  color: var(--text);
+  --input-text: var(--text-light);
+  --input-placeholder: var(--muted-light);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+header {
+  background-color: var(--card);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  color: inherit;
+  transition: background-color var(--transition);
+}
+body.light header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.btn {
+  border-radius: 8px;
+  transition: transform var(--transition), box-shadow var(--transition),
+    background-color var(--transition), border-color var(--transition);
+  font-weight: 600;
+}
+.btn-outline-secondary {
+  color: var(--muted);
+  border: 1px solid var(--muted);
+  background-color: transparent;
+}
+.btn-outline-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 119, 255, 0.1);
+  background: rgba(0, 119, 255, 0.05);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 15px rgba(0, 119, 255, 0.3);
+}
+
+#signupSection {
+  background: var(--bg);
+}
+
+.vh-100 {
+  min-height: calc(100vh - 70px);
+  padding-top: 70px;
+}
+
+.cardbg {
+  background-color: var(--card);
+  color: inherit;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: background-color var(--transition);
+}
+body.light .cardbg {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+input.form-control {
+  background-color: transparent;
+  color: var(--input-text);
+  border: 1px solid var(--muted);
+  transition: border-color var(--transition), color var(--transition);
+}
+input.form-control:focus {
+  background-color: transparent;
+  color: var(--input-text);
+  box-shadow: 0 0 0 0.25rem rgba(0, 119, 255, 0.25);
+  border-color: var(--color-primary);
+}
+input.form-control::placeholder {
+  color: var(--input-placeholder);
+  opacity: 0.8;
+}
+
+#toLogin {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+#toSignup {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.btn-outline-light {
+  border-color: var(--text-dark);
+  color: var(--text-dark);
+  background-color: transparent;
+}
+body.light .btn-outline-light {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+#signupSection {
+  padding-top: 80px;
+}
+
+.firstBox,
+.secondBox {
+  min-height: 100vh;
+}
+
+.status1 {
+  color: var(--muted);
+}
+
+.secondBox .text-primary {
+  color: var(--color-primary) !important;
+}
+#vibeStream {
+  font-size: x-large;
+}
