@@ -50,11 +50,21 @@ function againSignup() {
   secondBox.style.display = "none";
   firstBox.style.display = "block";
 }
+const modeToggle = document.getElementById("mode-toggle");
+const THEME_KEY = "mini_theme";
 
-const themeToggle = document.getElementById("themeToggle");
-themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("light-mode");
-  themeToggle.textContent = document.body.classList.contains("light-mode")
-    ? "Dark Mode"
-    : "Light Mode";
-});
+const savedTheme = localStorage.getItem(THEME_KEY);
+if (savedTheme === "light") {
+  document.body.classList.add("light");
+} else {
+  document.body.classList.remove("light");
+}
+
+if (modeToggle) {
+  modeToggle.onclick = function () {
+    document.body.classList.toggle("light");
+    const isLight = document.body.classList.contains("light");
+
+    localStorage.setItem(THEME_KEY, isLight ? "light" : "dark");
+  };
+}
